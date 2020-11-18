@@ -1,0 +1,20 @@
+{
+  "name": "tyautemp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyautyau56/tyautemp.git"
+  },
+  "keywords": [],
+  "author": "tyautyau56 <i19yanagi@gmail.com> (https://tyautyau56.netlify.app)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tyautyau56/tyautemp/issues"
+  },
+  "homepage": "https://github.com/tyautyau56/tyautemp#readme"
+}
