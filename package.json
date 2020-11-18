@@ -1,7 +1,7 @@
 {
   "name": "tyautemp",
   "version": "1.0.0",
-  "description": "",
+  "description": "The command to create a template for tyautyau56 web development",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
