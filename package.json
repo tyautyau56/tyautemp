@@ -1,8 +1,8 @@
 {
   "name": "tyautemp",
   "version": "1.0.0",
-  "bin":  {
-    "tyaunext": "./.bin/create-next-template.js"
+  "bin": {
+    "tyautemp": "./.bin/template-select.js"
   },
   "repository": {
     "type": "git",
@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/tyautyau56/tyautemp/issues"
   },
-  "homepage": "https://github.com/tyautyau56/tyautemp#readme"
+  "homepage": "https://github.com/tyautyau56/tyautemp#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
