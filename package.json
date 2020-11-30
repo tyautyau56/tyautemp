@@ -1,34 +1,17 @@
 {
   "name": "tyautemp",
-<<<<<<< HEAD
-  "version": "0.1.0",
-=======
   "version": "1.0.0",
->>>>>>> a26289fb08a058467c24e8f81a1031cbeb92ad1a
-  "description": "The command to create a template for tyautyau56 web development",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin":  {
+    "tyaunext": "./.bin/create-next-template.js"
   },
-<<<<<<< HEAD
-  "keywords": [],
-  "author": "tyautyau56 <i19yanagi@gmail.com> (https://tyautyau56.netlify.app/)",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tyautyau56/tyautemp.git"
-  }
-=======
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tyautyau56/tyautemp.git"
   },
-  "keywords": [],
   "author": "tyautyau56 <i19yanagi@gmail.com> (https://tyautyau56.netlify.app)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tyautyau56/tyautemp/issues"
   },
   "homepage": "https://github.com/tyautyau56/tyautemp#readme"
->>>>>>> a26289fb08a058467c24e8f81a1031cbeb92ad1a
 }
