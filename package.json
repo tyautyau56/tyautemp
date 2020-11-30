@@ -1,0 +1,16 @@
+{
+  "name": "tyautemp",
+  "version": "0.1.0",
+  "description": "The command to create a template for tyautyau56 web development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "tyautyau56 <i19yanagi@gmail.com> (https://tyautyau56.netlify.app/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tyautyau56/tyautemp.git"
+  }
+}
