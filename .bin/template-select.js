@@ -42,11 +42,14 @@ inquirer.prompt([
         choices: ["yarn", "npm"]
     }
 ]).then(({dir_name, select_template, select_package})=> {
-    let match = detail.filter(function (item, index) {
+    let match = detail.filter(function (item) {
         if (item.name === select_template) return true;
     });
     select_template_url = match[0].url;
     select_package_manager = select_package;
     select_project_name = dir_name;
 });
+
+
+
 
