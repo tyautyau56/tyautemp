@@ -4,8 +4,6 @@
 
 const inquirer = require('inquirer');
 const { execSync, spawnSync} = require("child_process");
-const cpr = require("cpr");
-const rimraf = require("rimraf");
 const path = require("path");
 
 function check(command) {
