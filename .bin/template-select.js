@@ -4,6 +4,23 @@
 
 const inquirer = require('inquirer');
 const { execSync, spawnSync} = require("child_process");
+const path = require("path");
+
+function check(command) {
+    try{
+        execSync(command, {
+            stdio: "ignore"
+        });
+        return true;
+    }catch (err) {
+        return false;
+    }
+}
+
+if (!check("git --version")) {
+    console.log("git is not installed.");
+    process.exit(1);
+}
 
 let select_template_url = null;
 let select_package_manager = null;
@@ -42,11 +59,10 @@ inquirer.prompt([
         choices: ["yarn", "npm"]
     }
 ]).then(({dir_name, select_template, select_package})=> {
-    let match = detail.filter(function (item, index) {
+    let match = detail.filter(function (item) {
         if (item.name === select_template) return true;
     });
     select_template_url = match[0].url;
     select_package_manager = select_package;
     select_project_name = dir_name;
 });
-
