@@ -4,6 +4,25 @@
 
 const inquirer = require('inquirer');
 const { execSync, spawnSync} = require("child_process");
+const cpr = require("cpr");
+const rimraf = require("rimraf");
+const path = require("path");
+
+function check(command) {
+    try{
+        execSync(command, {
+            stdio: "ignore"
+        });
+        return true;
+    }catch (err) {
+        return false;
+    }
+}
+
+if (!check("git --version")) {
+    console.log("git is not installed.");
+    process.exit(1);
+}
 
 let select_template_url = null;
 let select_package_manager = null;
@@ -49,7 +68,3 @@ inquirer.prompt([
     select_package_manager = select_package;
     select_project_name = dir_name;
 });
-
-
-
-
