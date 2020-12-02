@@ -6,9 +6,9 @@ const inquirer = require('inquirer');
 const { execSync, spawnSync} = require("child_process");
 const path = require("path");
 
-function check(command) {
+function check(cmd) {
     try{
-        execSync(command, {
+        execSync(cmd, {
             stdio: "ignore"
         });
         return true;
@@ -66,3 +66,17 @@ inquirer.prompt([
     select_package_manager = select_package;
     select_project_name = dir_name;
 });
+
+function run(cmd, args, project_name) {
+    const output = spawnSync(cmd, args, project_name);
+
+    if (output.error != null) {
+        throw output.error;
+    }
+
+    if (output.status !== 0) {
+        throw new Error();
+    }
+}
+
+run("git", [])
