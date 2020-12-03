@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-//TODO: make command line tool via node
-
 const inquirer = require('inquirer');
-const { execSync, spawnSync} = require("child_process");
-const path = require("path");
+const { execSync, spawnSync} = require('child_process');
+const path = require('path');
+const clear = require('clear');
+const rimraf = require('rimraf');
 
 function check(cmd) {
     try{
@@ -22,6 +22,8 @@ if (!check("git --version")) {
     process.exit(1);
 }
 
+clear();
+
 let select_template_url = null;
 let select_package_manager = null;
 let select_project_name = null;
@@ -38,6 +40,19 @@ const detail = [
     {
         "name": "wasm-template",
         "url": null
+    }
+]
+
+const package_detail = [
+    {
+        "name": "yarn",
+        "cmd": "yarn",
+        "args": ""
+    },
+    {
+        "name": "npm",
+        "cmd": "npm",
+        "args": "i"
     }
 ]
 
@@ -59,18 +74,24 @@ inquirer.prompt([
         choices: ["yarn", "npm"]
     }
 ]).then(({dir_name, select_template, select_package})=> {
-    let match = detail.filter(function (item) {
+    let match_template = detail.filter(function (item) {
         if (item.name === select_template) return true;
     });
-    select_template_url = match[0].url;
+    select_template_url = match_template[0].url;
     select_package_manager = select_package;
     select_project_name = dir_name;
+    run('git', ['clone', '--no-tags', '--depth', '1', select_template_url, select_project_name]);
+    rmGitDir(select_project_name, gitDir);
+    // let match_package = package_detail.filter(function (item) {
+    //     if (item.name === select_package_manager) return true;
+    // })
+    // run(match_package[0].cmd, match_package[0].args);
 });
 
-function run(cmd, args, project_name) {
-    const output = spawnSync(cmd, args, project_name);
+function run(cmd, args) {
+    const output = spawnSync(cmd, args);
 
-    if (output.error != null) {
+    if (output.error) {
         throw output.error;
     }
 
@@ -79,4 +100,9 @@ function run(cmd, args, project_name) {
     }
 }
 
-run("git", [])
+const gitDir = ".git"
+
+// // like rm -rf {path/to/project/.git}
+function rmGitDir(dirName, gitDir) {
+    rimraf.sync(path.join(dirName, gitDir))
+}
