@@ -27,6 +27,7 @@ clear();
 let select_template_url = null;
 let select_package_manager = null;
 let select_project_name = null;
+const modules_folder = "node_modules";
 
 const detail = [
     {
@@ -47,12 +48,18 @@ const package_detail = [
     {
         "name": "yarn",
         "cmd": "yarn",
-        "args": ""
+        "args": [
+            "install",
+            "--pure-lockfile",
+            "--modules-folder"
+        ]
     },
     {
         "name": "npm",
         "cmd": "npm",
-        "args": "i"
+        "args": [
+
+        ]
     }
 ]
 
@@ -82,14 +89,14 @@ inquirer.prompt([
     select_project_name = dir_name;
     run('git', ['clone', '--no-tags', '--depth', '1', select_template_url, select_project_name]);
     rmGitDir(select_project_name, gitDir);
-    // let match_package = package_detail.filter(function (item) {
-    //     if (item.name === select_package_manager) return true;
-    // })
-    // run(match_package[0].cmd, match_package[0].args);
+    let match_package = package_detail.filter(function (item) {
+        if (item.name === select_package) return true;
+    });
+    run(match_package[0].cmd, [match_package[0].args, path.join(dir_name, modules_folder)], {env: process.env});
 });
 
-function run(cmd, args) {
-    const output = spawnSync(cmd, args);
+function run(cmd, args, opts) {
+    const output = spawnSync(cmd, args, opts);
 
     if (output.error) {
         throw output.error;
@@ -102,7 +109,10 @@ function run(cmd, args) {
 
 const gitDir = ".git"
 
-// // like rm -rf {path/to/project/.git}
 function rmGitDir(dirName, gitDir) {
     rimraf.sync(path.join(dirName, gitDir))
+}
+
+function success() {
+
 }
