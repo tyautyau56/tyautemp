@@ -114,5 +114,8 @@ function rmGitDir(dirName, gitDir) {
 }
 
 function success() {
-
+    console.log("success!!");
+    console.log("");
+    console.log(`cd ${select_project_name}`);
+    console.log(`${select_package_manager} start`)
 }
