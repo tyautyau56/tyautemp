@@ -113,6 +113,7 @@ function rmGitDir(dirName, gitDir) {
     rimraf.sync(path.join(dirName, gitDir))
 }
 
+// add success function
 function success() {
     console.log("success!!");
     console.log("");
