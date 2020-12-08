@@ -5,6 +5,8 @@ const { execSync, spawnSync} = require('child_process');
 const path = require('path');
 const clear = require('clear');
 const rimraf = require('rimraf');
+const logSymbols = require('log-symbols');
+const chalk = require('chalk');
 
 function check(cmd) {
     try{
@@ -27,7 +29,7 @@ clear();
 let select_template_url = null;
 let select_package_manager = null;
 let select_project_name = null;
-const modules_folder = "node_modules";
+const current = "./";
 
 const detail = [
     {
@@ -48,17 +50,14 @@ const package_detail = [
     {
         "name": "yarn",
         "cmd": "yarn",
-        "args": [
-            "install",
-            "--pure-lockfile",
-            "--modules-folder"
-        ]
+        "args": []
     },
     {
         "name": "npm",
         "cmd": "npm",
         "args": [
-
+            "i",
+            "--prefix"
         ]
     }
 ]
@@ -87,12 +86,22 @@ inquirer.prompt([
     select_template_url = match_template[0].url;
     select_package_manager = select_package;
     select_project_name = dir_name;
-    run('git', ['clone', '--no-tags', '--depth', '1', select_template_url, select_project_name]);
+    try {
+        run('git', ['clone', '--no-tags', '--depth', '1', select_template_url, select_project_name]);
+        console.log(logSymbols.success, "Finished clone git repository!");
+    }catch (e) {
+        console.error(e);
+    }
     rmGitDir(select_project_name, gitDir);
-    let match_package = package_detail.filter(function (item) {
-        if (item.name === select_package) return true;
-    });
-    run(match_package[0].cmd, [match_package[0].args, path.join(dir_name, modules_folder)], {env: process.env});
+    console.log(logSymbols.success, "Finished remove git folder!");
+    try{
+        run(select_package_manager, sort_args(select_package_manager, select_project_name));
+        console.log(logSymbols.success, "Finished install packages!");
+        success();
+    }catch (e) {
+        console.error(e);
+        rimraf.sync(path.join(current, select_project_name));
+    }
 });
 
 function run(cmd, args, opts) {
@@ -113,10 +122,21 @@ function rmGitDir(dirName, gitDir) {
     rimraf.sync(path.join(dirName, gitDir))
 }
 
-// add success function
+function sort_args(package_name, project_path) {
+    let match_package = package_detail.filter(function (item) {
+        if (item.name === package_name) return true;
+    });
+    let args = match_package[0].args;
+    args.push(path.join(project_path));
+    return args;
+}
+
 function success() {
-    console.log("success!!");
-    console.log("");
-    console.log(`cd ${select_project_name}`);
-    console.log(`${select_package_manager} start`)
+    console.log();
+    console.log(chalk.cyan("success!!"));
+    console.log();
+    console.log();
+    console.log(chalk.cyan.bold(`cd ${select_project_name}`));
+    console.log(chalk.cyan.bold(`${select_package_manager} start`));
+    console.log();
 }
