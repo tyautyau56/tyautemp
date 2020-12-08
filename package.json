@@ -15,8 +15,10 @@
   },
   "homepage": "https://github.com/tyautyau56/tyautemp#readme",
   "dependencies": {
+    "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "inquirer": "^7.3.3",
+    "log-symbols": "^4.0.0",
     "rimraf": "^3.0.2"
   }
 }
