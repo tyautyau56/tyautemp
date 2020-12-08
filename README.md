@@ -4,7 +4,7 @@
 Select a template from my template repositories and package manager and clone it from git.
 
 ## Usage
-` npx tyautemp`
+` $ npx tyautemp`
 
 ## LICENSE
 MIT License  
