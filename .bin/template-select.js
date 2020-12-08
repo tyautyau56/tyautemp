@@ -79,7 +79,7 @@ inquirer.prompt([
         message: "Choose the package manager you want to use.",
         choices: ["yarn", "npm"]
     }
-]).then(({dir_name, select_template, select_package})=> {
+]).then(({dir_name, select_template, select_package}) => {
     let match_template = detail.filter(function (item) {
         if (item.name === select_template) return true;
     });
@@ -98,8 +98,8 @@ inquirer.prompt([
         run(select_package_manager, sort_args(select_package_manager, select_project_name));
         console.log(logSymbols.success, "Finished install packages!");
         success();
-    }catch (e) {
-        console.error(e);
+    }catch (err) {
+        console.error(err);
         rimraf.sync(path.join(current, select_project_name));
     }
 });
