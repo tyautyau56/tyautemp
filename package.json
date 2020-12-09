@@ -1,5 +1,5 @@
 {
-  "name": "tyautemp",
+  "name": "@tyautyau56/tyautemp",
   "version": "1.0.0",
   "bin": {
     "tyautemp": "./.bin/template-select.js"
@@ -19,6 +19,10 @@
     "clear": "^0.1.0",
     "inquirer": "^7.3.3",
     "log-symbols": "^4.0.0",
+    "node-emoji": "^1.10.0",
     "rimraf": "^3.0.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

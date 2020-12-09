@@ -7,6 +7,7 @@ const clear = require('clear');
 const rimraf = require('rimraf');
 const logSymbols = require('log-symbols');
 const chalk = require('chalk');
+const emoji = require('node-emoji');
 
 function check(cmd) {
     try{
@@ -80,7 +81,7 @@ inquirer.prompt([
         name: "select_package",
         type: "list",
         message: "Choose the package manager you want to use.",
-        choices: ["yarn", "npm"]
+        choices: ["npm", "yarn"]
     }
 ]).then(({dir_name, select_template, select_package}) => {
     let match_template = detail.filter(function (item) {
@@ -136,7 +137,7 @@ function sort_args(package_name, project_path) {
 
 function success() {
     console.log();
-    console.log(chalk.cyan("success!!"));
+    console.log(emoji.emojify(':tada:') + chalk.cyan("success!!"));
     console.log();
     console.log();
     console.log(chalk.cyan.bold(`cd ${select_project_name}`));
