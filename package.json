@@ -1,5 +1,5 @@
 {
-  "name": "@tyautyau56/tyautemp",
+  "name": "tyautemp",
   "version": "1.0.0",
   "bin": {
     "tyautemp": "./.bin/template-select.js"
