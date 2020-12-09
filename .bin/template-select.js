@@ -50,7 +50,10 @@ const package_detail = [
     {
         "name": "yarn",
         "cmd": "yarn",
-        "args": []
+        "args": [
+            "install",
+            "--cwd"
+        ]
     },
     {
         "name": "npm",
