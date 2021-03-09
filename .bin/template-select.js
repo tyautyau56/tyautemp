@@ -38,8 +38,12 @@ const detail = [
         "url": "https://github.com/tyautyau56/next-template.git"
     },
     {
-        "name": "react-template",
+        "name": "react-ts-template",
         "url": "https://github.com/tyautyau56/react-template.git"
+    },
+    {
+        "name": "react-js-template",
+        "url": "https://github.com/tyautyau56/react-js-template.git"
     },
     {
         "name": "wasm-template",
@@ -75,7 +79,7 @@ inquirer.prompt([
         name: "select_template",
         type: "list",
         message: "Choose the template you want to use.",
-        choices: ["next-template", "react-template", "wasm-template"]
+        choices: ["next-template", "react-ts-template", "react-js-template", "wasm-template"]
     },
     {
         name: "select_package",
