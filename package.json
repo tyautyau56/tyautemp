@@ -1,8 +1,8 @@
 {
   "name": "@tyautyau56/tyautemp",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "bin": {
-    "tyautemp": "./.bin/template-select.js"
+    "tyautemp": ".bin/template-select.js"
   },
   "repository": {
     "type": "git",
